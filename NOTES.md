@@ -19,6 +19,10 @@ Paused: 14/08/2024 15:40
 Duration: 1 hr 10 mins
 
 Started: 14/08/2024 23:40
+Ended: 15/08/2024 04:00
+Duration: 4 hr 20 mins
+
+Total Duration: 6 hr 55 mins
 
 ## Create Rails App
 
@@ -170,3 +174,34 @@ exisitng droplets.
 
 Setting up in manually is a tedious process. However, that is balanced
 out by not having to pay extra for hosting.
+
+## Final thoughts
+
+Attempting to draw understanding of business problems purely through an
+ERD will not be perfect. In my case, the ERD had context about the
+ordering and restaurant menu systems that I did not have.
+For example, what are the differences between a `Product` and a `Component`?
+
+ChatGPT or some other LLM is amazing at writing boilerplate code for web or
+API applications as well as for generating dummy data. However, I ran out
+of credits to upload stuff to ChatGPT and hence could not generate the
+dummy data in production using it.
+A major downside of this is that there is no simple way to easily
+or quickly verify that the generated code is correct.
+Either eyeball it, or write tests.
+Rule of thumb would be write the code, or write the tests, don't
+LLM both parts.
+
+There is a reason why Heroku exists or other similar platforms.
+Even being very familiar with setting up bare metal servers,
+it still took me a long time to setup the server and deploy
+there are always issues with installing ruby or the database or
+some such. In hindsight, I should have used Docker.
+
+The test coverage for this repo is less than ideal.
+I was focused on getting it up and running and having some confidence that
+it would run okay. I was not looking to have >80% test coverage or other
+some such. Chasing such a metric in such a short span of time is an
+exercise in futility.
+
+Overall, it was fun to fully set up end-to-end a Rails service.
