@@ -167,3 +167,6 @@ linked to a Component instead of a Product, and vice versa.
 
 It is deployed on Digitalocean droplets as I have an account there and
 exisitng droplets.
+
+Setting up in manually is a tedious process. However, that is balanced
+out by not having to pay extra for hosting.
