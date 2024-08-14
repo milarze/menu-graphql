@@ -2,14 +2,14 @@
 
 one:
   type: Product
-  identifier: MyString
+  identifier: id_one
   label: MyString
   description: MyString
   price: 1.5
 
 two:
   type: Component
-  identifier: MyString
+  identifier: id_two
   label: MyString
   description: MyString
   price: 1.5

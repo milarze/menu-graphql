@@ -1,14 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  identifier: MyString
+  identifier: id_one
   label: MyString
   state: MyString
   start_date: 2024-08-14
   end_date: 2024-08-14
 
 two:
-  identifier: MyString
+  identifier: id_two
   label: MyString
   state: MyString
   start_date: 2024-08-14
