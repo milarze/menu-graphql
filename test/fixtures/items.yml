@@ -1,14 +1,14 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  type: 
+  type: Product
   identifier: MyString
   label: MyString
   description: MyString
   price: 1.5
 
 two:
-  type: 
+  type: Component
   identifier: MyString
   label: MyString
   description: MyString
