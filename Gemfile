@@ -47,3 +47,5 @@ end
 
 
 gem "graphiql-rails", "~> 1.10"
+
+gem "dotenv", "~> 3.1"
