@@ -49,3 +49,7 @@ end
 gem "graphiql-rails", "~> 1.10"
 
 gem "dotenv", "~> 3.1"
+
+gem "sprockets-rails", "~> 3.5"
+
+gem "graphql", "~> 2.3"

@@ -71,3 +71,23 @@ so copy those into the files themselves.
 Pause at: 10:20
 
 Continue at: 11:00
+
+## Add Graphiql stuff
+
+1. GraphiQL requires sprockets or propshaft,
+   I chose Sprockets as I am somewhat familiar with it.
+2. Create the manifest and add the graphiql css and js to it.
+3. Mount the engine at `/graphiql`
+
+## Add GraphQL
+
+Initially thought that GraphiQL included the GraphQL engine,
+but it doesn't.
+So `graphql` gem will be used for the actual GraphQL engine.
+
+Install it using:
+
+```shell
+bundle add grphql
+bin/rails generate graphql:install
+```
