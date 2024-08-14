@@ -1,6 +1,14 @@
 # Notes
 
+## Time blocks
+
 Started: 14/08/2024 09:45
+Paused: 14/08/2024 10:20
+Duration: 35 mins
+
+Started: 14/08/2024 11:00
+Paused: 14/08/2024 11:30
+Duration: 30 mins
 
 ## Create Rails App
 
@@ -68,9 +76,6 @@ We will need to fill in the associations accordingly.
 ChatGPT generates the contents of each file as well,
 so copy those into the files themselves.
 
-Pause at: 10:20
-
-Continue at: 11:00
 
 ## Add Graphiql stuff
 
@@ -91,3 +96,13 @@ Install it using:
 bundle add grphql
 bin/rails generate graphql:install
 ```
+
+## Generate all the types
+
+Prompt in the same ChatGPT conversation.
+
+```text
+using GraphQL gem create the rails generation for all the objects
+```
+
+This will generate all the types. Just add associations to those types.

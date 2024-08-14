@@ -21,11 +21,84 @@ module Types
     # Add root-level fields here.
     # They will be entry points for queries on your schema.
 
-    # TODO: remove me
-    field :test_field, String, null: false,
-      description: "An example field added by the generator"
-    def test_field
-      "Hello World!"
+    # Fetch all menus
+    field :menus, [Types::MenuType], null: false
+
+    # Fetch a specific menu by ID
+    field :menu, Types::MenuType, null: false do
+      argument :id, ID, required: true
+    end
+
+    # Fetch all sections
+    field :sections, [Types::SectionType], null: false
+
+    # Fetch a specific section by ID
+    field :section, Types::SectionType, null: false do
+      argument :id, ID, required: true
+    end
+
+    # Fetch all items
+    field :items, [Types::ItemType], null: false
+
+    # Fetch a specific item by ID
+    field :item, Types::ItemType, null: false do
+      argument :id, ID, required: true
+    end
+
+    # Fetch all modifiers
+    field :modifiers, [Types::ModifierType], null: false
+
+    # Fetch a specific modifier by ID
+    field :modifier, Types::ModifierType, null: false do
+      argument :id, ID, required: true
+    end
+
+    # Fetch all modifiers
+    field :modifier_groups, [Types::ModifierGroupType], null: false
+
+    # Fetch a specific modifier by ID
+    field :modifier_group, Types::ModifierGroupType, null: false do
+      argument :id, ID, required: true
+    end
+
+    def menus
+      Menu.all
+    end
+
+    def menu(id:)
+      Menu.find(id)
+    end
+
+    def sections
+      Section.all
+    end
+
+    def section(id:)
+      Section.find(id)
+    end
+
+    def items
+      Item.all
+    end
+
+    def item(id:)
+      Item.find(id)
+    end
+
+    def modifiers
+      Modifier.all
+    end
+
+    def modifier(id:)
+      Modifier.find(id)
+    end
+
+    def modifier_groups
+      ModifierGroup.all
+    end
+
+    def modifier_group(id:)
+      ModifierGroup.find(id)
     end
   end
 end
