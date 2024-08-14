@@ -18,6 +18,8 @@ Started: 14/08/2024 14:30
 Paused: 14/08/2024 15:40
 Duration: 1 hr 10 mins
 
+Started: 14/08/2024 23:40
+
 ## Create Rails App
 
 ```shell
@@ -140,3 +142,12 @@ apollo schema:download --endpoint=http://localhost:9000/graphql schema.json
 ```
 
 The schema file is put into schema.json and we can use that to generate data using ChatGPT.
+
+## Ensuring relationships work
+
+By default Rails creates the `id` column.
+In this case, all the `id` columns were created and are being used as the keys
+and foreign keys.
+
+When creating items, we need to create the first object, get the `id` and pass
+it using the references.

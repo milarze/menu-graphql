@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_14_020501) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_14_155113) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -31,6 +31,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_020501) do
     t.float "price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["identifier"], name: "index_items_on_identifier", unique: true
   end
 
   create_table "menu_sections", force: :cascade do |t|
@@ -51,6 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_020501) do
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["identifier"], name: "index_menus_on_identifier", unique: true
   end
 
   create_table "modifier_groups", force: :cascade do |t|
@@ -60,6 +62,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_020501) do
     t.integer "selection_required_max"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["identifier"], name: "index_modifier_groups_on_identifier", unique: true
   end
 
   create_table "modifiers", force: :cascade do |t|
@@ -90,6 +93,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_14_020501) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["identifier"], name: "index_sections_on_identifier", unique: true
   end
 
   add_foreign_key "item_modifier_groups", "items"
