@@ -2,25 +2,6 @@
 
 module Types
   class MutationType < Types::BaseObject
-    # Mutation to create a new menu
-    field :create_menu, Types::MenuType, null: false do
-      argument :identifier, String, required: true
-      argument :label, String, required: true
-      argument :state, String, required: false
-      argument :start_date, GraphQL::Types::ISO8601Date, required: false
-      argument :end_date, GraphQL::Types::ISO8601Date, required: false
-    end
-
-    # Mutation to update a menu
-    field :update_menu, Types::MenuType, null: false do
-      argument :id, ID, required: true
-      argument :identifier, String, required: false
-      argument :label, String, required: false
-      argument :state, String, required: false
-      argument :start_date, GraphQL::Types::ISO8601Date, required: false
-      argument :end_date, GraphQL::Types::ISO8601Date, required: false
-    end
-
     field :create_menu, mutation: Mutations::CreateMenu
     field :update_menu, mutation: Mutations::UpdateMenu
     field :delete_menu, mutation: Mutations::DeleteMenu

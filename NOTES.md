@@ -14,6 +14,9 @@ Started: 14/08/2024 11:40
 Paused: 14/08/2024 12:00
 Duration: 20 mins
 
+Started: 14/08/2024 14:30
+Paused: 14/08/2024 15:40
+Duration: 1 hr 10 mins
 
 ## Create Rails App
 
@@ -120,3 +123,20 @@ Create the mutations in separate files for all the models.
 ```
 
 This generates all the mutation code and makes it available in the schema.
+
+## Update all the models
+
+Adding model tests to ensure that the associations are properly modelled.
+
+## Testing GraphQL
+
+We need to export the schema, send it to ChatGPT and ask it to generate dummy data.
+
+Install `graphql-cli`
+
+```shell
+npm install -g apollo graphql
+apollo schema:download --endpoint=http://localhost:9000/graphql schema.json
+```
+
+The schema file is put into schema.json and we can use that to generate data using ChatGPT.
