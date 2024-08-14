@@ -10,6 +10,11 @@ Started: 14/08/2024 11:00
 Paused: 14/08/2024 11:30
 Duration: 30 mins
 
+Started: 14/08/2024 11:40
+Paused: 14/08/2024 12:00
+Duration: 20 mins
+
+
 ## Create Rails App
 
 ```shell
@@ -76,7 +81,6 @@ We will need to fill in the associations accordingly.
 ChatGPT generates the contents of each file as well,
 so copy those into the files themselves.
 
-
 ## Add Graphiql stuff
 
 1. GraphiQL requires sprockets or propshaft,
@@ -106,3 +110,13 @@ using GraphQL gem create the rails generation for all the objects
 ```
 
 This will generate all the types. Just add associations to those types.
+
+## Generate all the mutations
+
+Prompt
+
+```text
+Create the mutations in separate files for all the models.
+```
+
+This generates all the mutation code and makes it available in the schema.
