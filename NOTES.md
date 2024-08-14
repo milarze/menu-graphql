@@ -111,7 +111,8 @@ bin/rails generate graphql:install
 Prompt in the same ChatGPT conversation.
 
 ```text
-using GraphQL gem create the rails generation for all the objects
+
+using GraphQL gem create the rails generation for all the objects:
 ```
 
 This will generate all the types. Just add associations to those types.
@@ -141,7 +142,8 @@ npm install -g apollo graphql
 apollo schema:download --endpoint=http://localhost:9000/graphql schema.json
 ```
 
-The schema file is put into schema.json and we can use that to generate data using ChatGPT.
+The schema file is put into schema.json and we can use that to generate
+data using ChatGPT.
 
 ## Ensuring relationships work
 
@@ -151,3 +153,17 @@ and foreign keys.
 
 When creating items, we need to create the first object, get the `id` and pass
 it using the references.
+
+All the mutations for relationship tables take in id values, so we will need
+to retrieve the `id` during creation and pass it along for usage.
+
+## STI and belongs_to
+
+I originally added `belongs_to :product, foreign_key: "item_id"` in the
+`Modifier` model, but that was causing issues with creating a Modifier
+linked to a Component instead of a Product, and vice versa.
+
+## Deploy
+
+It is deployed on Digitalocean droplets as I have an account there and
+exisitng droplets.
