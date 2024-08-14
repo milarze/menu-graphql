@@ -21,5 +21,17 @@ module Types
     field :create_modifier_group, mutation: Mutations::CreateModifierGroup
     field :update_modifier_group, mutation: Mutations::UpdateModifierGroup
     field :delete_modifier_group, mutation: Mutations::DeleteModifierGroup
+
+    field :create_menu_section, mutation: Mutations::CreateMenuSection
+    field :update_menu_section, mutation: Mutations::UpdateMenuSection
+    field :delete_menu_section, mutation: Mutations::DeleteMenuSection
+
+    field :create_section_item, mutation: Mutations::CreateSectionItem
+    field :update_section_item, mutation: Mutations::UpdateSectionItem
+    field :delete_section_item, mutation: Mutations::DeleteSectionItem
+
+    field :create_item_modifier_group, mutation: Mutations::CreateItemModifierGroup
+    field :update_item_modifier_group, mutation: Mutations::UpdateItemModifierGroup
+    field :delete_item_modifier_group, mutation: Mutations::DeleteItemModifierGroup
   end
 end

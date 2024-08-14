@@ -1,7 +1,5 @@
 class Modifier < ApplicationRecord
   belongs_to :item
-  belongs_to :component, foreign_key: "item_id"
-  belongs_to :product, foreign_key: "item_id"
   belongs_to :modifier_group
 
   validates :display_order, numericality: {only_integer: true}
