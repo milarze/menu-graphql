@@ -2,11 +2,27 @@
 
 Started: 26/08/2024 00:50
 
+## Initial Thoughts
+
+The scope of the requirements has increased and there is a need to scale up.
+The current bare metal DigitalOcean bucket and resources are not enough to
+handle the requirements easily.
+As a result we are moving to a cloud provider.
+Originally, this would have been Heroku, but since Heroku no longer has a
+free tier, we will be using fly.io.
+
+### Deployment to Fly.io
+
+1. Install the fly CLI
+2. Run `fly launch` in the root directory.
+3. Fly.io handles the deployment. It took about 5 minutes.
+
 ## Seeding Data
 
 ChatGPT ran out of analysis tokens.
 
-Seeding data using Rails Console:
+Seeding data using Rails Console.
+Using the Fly.io CLI, we can run `fly console -a menu-grpahql --command="bin/rails c"`
 
 ```ruby
 ActiveRecord::Base.transaction do
@@ -71,3 +87,11 @@ ActiveRecord::Base.transaction do
    end
 end
 ```
+
+## Logging
+
+Without proper logging we will not be able to figure out what is slow
+or how to improve performance.
+
+## Query Performance
+

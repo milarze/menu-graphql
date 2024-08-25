@@ -55,3 +55,5 @@ gem "sprockets-rails", "~> 3.5"
 gem "graphql", "~> 2.3"
 
 gem "dockerfile-rails", ">= 1.6", :group => :development
+
+gem "prometheus_exporter", "~> 2.1"
