@@ -1,6 +1,7 @@
 # Stability Notes
 
 Started: 26/08/2024 00:50
+Paused: 26/08/2024 04:15
 
 ## Initial Thoughts
 
@@ -92,6 +93,24 @@ end
 
 Without proper logging we will not be able to figure out what is slow
 or how to improve performance.
+
+Fly.io provides a logging using the `fly logs` command.
+
+Fly.io also provides the application logs in Grafana.
+
+## Metrics
+
+Fly.io also provides in-built metrics using Prometheus.
+We just need to add GaaphQL specific metrics in.
+
+GraphQL Ruby gem already provides a metrics exported that
+is compatible with the `prometheus_exporter` gem.
+So we will use both of these together.
+
+Additional configuration is required to ensure that the metrics
+pushed by GraphQL exporter can reach the metrics collector.
+We need to use `metrics.process.menu-graphql.internal` to route using Fly.io's
+internal DNS routing.
 
 ## Query Performance
 

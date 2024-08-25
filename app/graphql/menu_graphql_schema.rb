@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
+require "prometheus_exporter/client"
+
 class MenuGraphqlSchema < GraphQL::Schema
+  trace_with GraphQL::Tracing::PrometheusTrace
   mutation(Types::MutationType)
   query(Types::QueryType)
 
