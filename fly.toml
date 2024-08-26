@@ -14,7 +14,7 @@ console_command = '/rails/bin/rails console'
 
 [processes]
   app = './bin/rails server'
-  metrics = 'bundle exec prometheus_exporter -b fly-local-6pn -a lib/graphql_collector.rb'
+  metrics = 'bundle exec prometheus_exporter -b ANY -a lib/graphql_collector.rb'
 
 [metrics]
   port = 9394
@@ -58,3 +58,4 @@ console_command = '/rails/bin/rails console'
 
 [env]
   PROMETHEUS_EXPORTER_HOST = 'metrics.process.menu-graphql.internal'
+  RAILS_LOG_LEVEL = 'debug'

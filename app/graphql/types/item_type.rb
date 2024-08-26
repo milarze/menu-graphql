@@ -17,5 +17,25 @@ module Types
     field :modifiers, [Types::ModifierType], null: true
     field :modifier_groups, [Types::ModifierGroupType], null: true
     field :item_modifier_groups, [Types::ItemModifierGroupType], null: true
+
+    def section_items
+      AssociationLoader.for(::Item, "section_items").load(object)
+    end
+
+    def sections
+      AssociationLoader.for(::Item, "sections").load(object)
+    end
+
+    def modifiers
+      AssociationLoader.for(::Item, "modifiers").load(object)
+    end
+
+    def modifier_groups
+      AssociationLoader.for(::Item, "modifier_groups").load(object)
+    end
+
+    def item_modifier_groups
+      AssociationLoader.for(::Item, "item_modifier_groups").load(object)
+    end
   end
 end

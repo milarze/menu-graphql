@@ -57,3 +57,5 @@ gem "graphql", "~> 2.3"
 gem "dockerfile-rails", ">= 1.6", :group => :development
 
 gem "prometheus_exporter", "~> 2.1"
+
+gem "graphql-batch", "~> 0.6.0"

@@ -11,5 +11,13 @@ module Types
     # Associations
     field :item, Types::ItemType, null: false
     field :modifier_group, Types::ModifierGroupType, null: false
+
+    def item
+      RecordLoader.for(::Item).load(object.item_id)
+    end
+
+    def modifier_group
+      RecordLoader.for(::ModifierGroup).load(object.modifier_group_id)
+    end
   end
 end

@@ -2,6 +2,9 @@
 
 Started: 26/08/2024 00:50
 Paused: 26/08/2024 04:15
+Duration: 3 hr 25 min
+
+Started: 26/08/2024 11:00
 
 ## Initial Thoughts
 
@@ -114,3 +117,60 @@ internal DNS routing.
 
 ## Query Performance
 
+In order to analyze query performance, we need to add logging to it.
+There are also default metrics available in Fly.io for PostgreSQL.
+
+The best way to see N+1 queries in Rails is to just log the queries and see
+what shows up. This can be done in development first, before pushing to
+production if there really is a need for it.
+
+A first glance at the logs for the following query reveals it is running
+all queries in the N+1 mode.
+
+```graphql
+query All {
+  menus {
+    id
+    identifier
+    label
+    state
+    startDate
+    endDate
+    sections {
+      id
+      identifier
+      label
+      items {
+        id
+        identifier
+        label
+        price
+        type
+        itemModifierGroups {
+          id
+          modifierGroup {
+            id
+            identifier
+            modifiers {
+              id
+              item {
+                id
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+We will add several `includes` to try to alleviate this.
+
+Shopify has the `graphql-batch` gem which looks like it would work well
+for our use-case.
+
+After setting up the `AssociationLoader` and `RecordLoader` for the different
+associations, we were able to move the needle on loading that one query
+from > 350ms to ~60ms (with a cold DB cache) and ~10ms (with a hot db cache)
+locally.

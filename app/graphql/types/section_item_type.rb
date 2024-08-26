@@ -12,5 +12,13 @@ module Types
     # Associations
     field :section, Types::SectionType, null: false
     field :item, Types::ItemType, null: false
+
+    def section
+      RecordLoader.for(::Section).load(object.section_id)
+    end
+
+    def item
+      RecordLoader.for(::Item).load(object.item_id)
+    end
   end
 end

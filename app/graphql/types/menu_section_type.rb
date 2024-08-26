@@ -12,5 +12,13 @@ module Types
     # Associations
     field :menu, Types::MenuType, null: false
     field :section, Types::SectionType, null: false
+
+    def menu
+      RecordLoader.for(::Menu).load(object.menu_id)
+    end
+
+    def section
+      RecordLoader.for(::Section).load(object.section_id)
+    end
   end
 end

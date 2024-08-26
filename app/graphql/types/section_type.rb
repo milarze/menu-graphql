@@ -14,5 +14,21 @@ module Types
     field :menus, [Types::MenuType], null: true
     field :section_items, [Types::SectionItemType], null: true
     field :items, [Types::ItemType], null: true
+
+    def menu_sections
+      AssociationLoader.for(::Section, "menu_sections").load(object)
+    end
+
+    def menus
+      AssociationLoader.for(::Section, "menus").load(object)
+    end
+
+    def section_items
+      AssociationLoader.for(::Section, "section_items").load(object)
+    end
+
+    def items
+      AssociationLoader.for(::Section, "items").load(object)
+    end
   end
 end

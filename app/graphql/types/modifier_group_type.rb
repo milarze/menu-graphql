@@ -14,5 +14,17 @@ module Types
     field :modifiers, [Types::ModifierType], null: true
     field :items, [Types::ItemType], null: true
     field :item_modifier_groups, [Types::ItemModifierGroupType], null: true
+
+    def modifiers
+      AssociationLoader.for(::ModifierGroup, "modifiers").load(object)
+    end
+
+    def items
+      AssociationLoader.for(::ModifierGroup, "items").load(object)
+    end
+
+    def item_modifier_groups
+      AssociationLoader.for(::ModifierGroup, "item_modifier_groups").load(object)
+    end
   end
 end
