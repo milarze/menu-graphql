@@ -8,6 +8,9 @@ Started: 26/08/2024 11:00
 Paused: 26/08/2024 12:45
 Duration: 1 hr 45 min
 
+Started: 26/08/2024 13:45
+Completed:
+
 ## Initial Thoughts
 
 The scope of the requirements has increased and there is a need to scale up.
@@ -212,7 +215,6 @@ fragments. We will use the `graphql-fragment_cache` gem and just cache
 every query that hits the main query entrypoints.
 With the fragment caching, all warmed up queries now take > 0ms.
 
-
 ## Load Testing
 
 Asking ChatGPT to generate sample queries for load testing resulted in
@@ -227,4 +229,80 @@ Each of those runs 100 requests sequentially.
 Without having deployed the changes for caching, one run of the load test
 suite took 89.77 seconds.
 
+After deploying caching, the test suite took 24.09 seconds.
 
+In order for any load test to produce reasonable results and data to
+draw conculsions from, there needs to be a target load.
+
+Assuming a restaurant has about 100 tables, and each table hosts a group
+of 4 persons, then this test of 5000 requests is well above the expected
+maximum concurrent load of 400 requests for a menu.
+
+So for the hypothetical expected load, the current setup of
+2 machines with 1CPU each, and 1GB of memory works well enough.
+Usually the bottlenecks in a web application is the database.
+With caching we've eliminated at least one network round-trip to query data
+and the compute cost of generating the result on the database.
+This leaves a database with much lower load while still giving guests a good
+user experience.
+
+### Where this doesn't scale
+
+If we decide we want to have a food delivery app and open it up to pretty much
+the entire country, then we would need to re-think this approach.
+Based on expected load, we would tweak the load test scripts and re-run them.
+Then use those results to inform our decision making on how to improve
+performance.
+
+## Architecture for scaling
+
+When it comes to quickly scaling up and down automatically, Kuberenetes is one
+of the best options available.
+However, it is not a one-size-fits all solution. In this exercise, I assume
+that there are more than one services running within the organization.
+As such using Kubernetes as the base for scaling one or all the services in the
+organization makes sense. With more services, there is less likely to be excess
+capacity as the assumption is the more services, the more consistent the overall
+load on the system is likely to be (this does not always hold true).
+
+![image](./architecture.png)
+
+In this case, Kubernetes handles load balancing, scaling, and availability
+automatically. Assuming there is enough actual compute capacity.
+
+Some pros for Kubernetes:
+
+- It is becoming industry standard, so it is easy to hire people to manage it.
+- There is a lot of community support.
+- Many tools available today integrate well, or are kubernetes native.
+
+Some cons of Kubernetes:
+
+- Setting up and managing the cluster is a full-time job.
+- The learning curve is steep.
+- It isn't opinionated about how things are done.
+   This can be jarring coming from Rails.
+- It is usually too costly to run until you really need to scale.
+
+## System Analysis and Final Thoughts
+
+The metrics for Prometheus did not work, since time is short I did not pursue
+asking Fly.io for more support on it. It would have provided metrics tracing
+for much better performance analysis.
+
+As tools go, Prometheus and Grafana are pretty much industry standard for
+monitoring, logging, and tracing. I did not add any error tracking tools.
+Grafana does support some use-cases for error tracking, but it does not
+have the same user experience as purpose built tools like Sentry or
+New Relic.
+
+Overall for tracing and monitoring, Prometheus and Grafana meet most of
+the requirements. I would call them good enough, there is no need to
+over-engineer the solution.
+
+On another note, the tasks in this assignment are each probably going
+to take a minimum of 6 hours to really plan and deliver a good solution.
+Working within the 6-hour time frame here means that there are corners that
+must be cut in order to meet the deadline with a good enough solution.
+
+Perfection is the enemy of progress. - Winston Churchill
