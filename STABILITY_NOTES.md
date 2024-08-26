@@ -5,6 +5,8 @@ Paused: 26/08/2024 04:15
 Duration: 3 hr 25 min
 
 Started: 26/08/2024 11:00
+Paused: 26/08/2024 12:45
+Duration: 1 hr 45 min
 
 ## Initial Thoughts
 
@@ -101,6 +103,9 @@ Fly.io provides a logging using the `fly logs` command.
 
 Fly.io also provides the application logs in Grafana.
 
+Screenshots:
+![image](./Grafana-application-logs.png)
+
 ## Metrics
 
 Fly.io also provides in-built metrics using Prometheus.
@@ -114,6 +119,14 @@ Additional configuration is required to ensure that the metrics
 pushed by GraphQL exporter can reach the metrics collector.
 We need to use `metrics.process.menu-graphql.internal` to route using Fly.io's
 internal DNS routing.
+
+After much work, both the GraphQL prometheus traces and the prometheus exporter
+were able to communicate with each other. However, Fly.io still did not show
+any of the `ruby_...` metrics that were expected.
+I could not find any information on how to resolve this online or on
+ChatGPT.
+As a result, this had to be left unresolved, as opening a support ticket
+with Fly.io would have taken quite long and it was crunch time.
 
 ## Query Performance
 
@@ -198,3 +211,20 @@ The other caching strategy added is to cache the specific GraphQL query
 fragments. We will use the `graphql-fragment_cache` gem and just cache
 every query that hits the main query entrypoints.
 With the fragment caching, all warmed up queries now take > 0ms.
+
+
+## Load Testing
+
+Asking ChatGPT to generate sample queries for load testing resulted in
+it hallucinating about all sorts of NetBIOS and other nonsense.
+
+I will have to manually generate the load test scripts.
+
+The load test script is [./load_test.rb](./load_test.rb).
+It runs 50 concurrent threads/processes using the `parallel` gem.
+Each of those runs 100 requests sequentially.
+
+Without having deployed the changes for caching, one run of the load test
+suite took 89.77 seconds.
+
+
