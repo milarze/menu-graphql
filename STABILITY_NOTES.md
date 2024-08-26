@@ -9,7 +9,10 @@ Paused: 26/08/2024 12:45
 Duration: 1 hr 45 min
 
 Started: 26/08/2024 13:45
-Completed:
+Completed: 26/08/2024 15:20
+Duration: 1 hr 35 min
+
+Total Time: 6 hr, 45 min
 
 ## Initial Thoughts
 
