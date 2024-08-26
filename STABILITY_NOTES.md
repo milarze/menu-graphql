@@ -265,6 +265,24 @@ organization makes sense. With more services, there is less likely to be excess
 capacity as the assumption is the more services, the more consistent the overall
 load on the system is likely to be (this does not always hold true).
 
+When there isn't actually more than one service, then the solution to scaling
+becomes scale on whichever system you currently use.
+For example in Fly.io, I would just increase the number of machines in much the
+same way one would do on Heroku.
+There is no need to rush off to use Kubernetes.
+Maintaining the same architecture as you currently have while scaling up on it
+removes any overhead required to re-learn a stack or deployment strategy.
+This leaves time and space for actually building features that customers want,
+without which there won't be a need to move to Kubernetes in the first place.
+
+A system really starts to need to move to a different deployment strategy
+when the current strategy starts to cost multiple times more than what it
+would cost to run the new stack. This is to make up for loss in developer
+productivity during the move and after it.
+An example would be if your cloud hosting costs are more than the cost
+of paying a full-time devops person and the compute of a Kubernetes cluster,
+then it makes sense to move to Kubernetes.
+
 ![image](./architecture.png)
 
 In this case, Kubernetes handles load balancing, scaling, and availability
