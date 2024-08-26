@@ -3,6 +3,7 @@
 require "prometheus_exporter/client"
 
 class MenuGraphqlSchema < GraphQL::Schema
+  use GraphQL::FragmentCache
   trace_with GraphQL::Tracing::PrometheusTrace
   mutation(Types::MutationType)
   query(Types::QueryType)

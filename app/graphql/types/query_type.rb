@@ -2,6 +2,7 @@
 
 module Types
   class QueryType < Types::BaseObject
+    include GraphQL::FragmentCache::Object
     field :node, Types::NodeType, null: true, description: "Fetches an object given its ID." do
       argument :id, ID, required: true, description: "ID of the object."
     end
@@ -22,42 +23,42 @@ module Types
     # They will be entry points for queries on your schema.
 
     # Fetch all menus
-    field :menus, [Types::MenuType], null: false
+    field :menus, [Types::MenuType], null: false, cache_fragment: true
 
     # Fetch a specific menu by ID
-    field :menu, Types::MenuType, null: false do
+    field :menu, Types::MenuType, null: false, cache_fragment: true do
       argument :id, ID, required: true
     end
 
     # Fetch all sections
-    field :sections, [Types::SectionType], null: false
+    field :sections, [Types::SectionType], null: false, cache_fragment: true
 
     # Fetch a specific section by ID
-    field :section, Types::SectionType, null: false do
+    field :section, Types::SectionType, null: false, cache_fragment: true do
       argument :id, ID, required: true
     end
 
     # Fetch all items
-    field :items, [Types::ItemType], null: false
+    field :items, [Types::ItemType], null: false, cache_fragment: true
 
     # Fetch a specific item by ID
-    field :item, Types::ItemType, null: false do
+    field :item, Types::ItemType, null: false, cache_fragment: true do
       argument :id, ID, required: true
     end
 
     # Fetch all modifiers
-    field :modifiers, [Types::ModifierType], null: false
+    field :modifiers, [Types::ModifierType], null: false, cache_fragment: true
 
     # Fetch a specific modifier by ID
-    field :modifier, Types::ModifierType, null: false do
+    field :modifier, Types::ModifierType, null: false, cache_fragment: true do
       argument :id, ID, required: true
     end
 
     # Fetch all modifiers
-    field :modifier_groups, [Types::ModifierGroupType], null: false
+    field :modifier_groups, [Types::ModifierGroupType], null: false, cache_fragment: true
 
     # Fetch a specific modifier by ID
-    field :modifier_group, Types::ModifierGroupType, null: false do
+    field :modifier_group, Types::ModifierGroupType, null: false, cache_fragment: true do
       argument :id, ID, required: true
     end
 

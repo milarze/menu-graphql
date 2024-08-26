@@ -174,3 +174,27 @@ After setting up the `AssociationLoader` and `RecordLoader` for the different
 associations, we were able to move the needle on loading that one query
 from > 350ms to ~60ms (with a cold DB cache) and ~10ms (with a hot db cache)
 locally.
+In this case, there is no Rails caching involved.
+
+On production, query times before load were also in a similar ~350ms range.
+After deploying the change, the initial load still took ~350ms.
+However subsequent loads, after the database cache warmed up, took around
+100ms each.
+This difference between production and local is likely due to network latency
+as local development runs all on the same machine with no network.
+Also the local development machine is much more powerful than the machines
+provisioned in Fly.io.
+
+## Caching
+
+Reference: [Rails 7.1 makes ActiveRecord query cache an LRU](https://www.shakacode.com/blog/rails-make-active-records-query-cache-an-lru/)
+
+Rails has the ActiveRecord QueryCache on by default which means that
+our queries were already being cached. This means part of the performance
+improvements seen previously are likely a combination of removing N+1
+and the query cache.
+
+The other caching strategy added is to cache the specific GraphQL query
+fragments. We will use the `graphql-fragment_cache` gem and just cache
+every query that hits the main query entrypoints.
+With the fragment caching, all warmed up queries now take > 0ms.
